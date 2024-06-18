@@ -15,8 +15,15 @@ const deleteTransactionBudgetById = async (transactionBudgetId) => {
   return transaction
 }
 
+const editTransactionBudgetById = async (transactionBudgetId, transaction) => {
+  const updatedTransaction = await transactionBudgetRepository.editTransaction(transactionBudgetId, transaction);
+  return updatedTransaction;
+};
+
 module.exports = {
   getTransactionsByBudgetId,
   createTransaction,
+  editTransactionBudgetById,
   deleteTransactionBudgetById
+
 };
