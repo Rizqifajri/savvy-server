@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 require('dotenv').config();
 const logIn = require('./auth/login')
 
@@ -6,6 +7,8 @@ const app = express()
 const port =  3000;
 
 app.use(express.json());
+app.use(cors());
+
 
 app.get('/', (req, res)=> {
   res.send("Welcome to Savvy API")
