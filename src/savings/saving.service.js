@@ -32,6 +32,7 @@ const createSaving = async (newSaving) => {
       start_date: newSaving.start_date,
       end_date: newSaving.end_date,
       saving_frequency: newSaving.saving_frequency,
+      nominal: newSaving.nominal
     });
     return saving;
  
