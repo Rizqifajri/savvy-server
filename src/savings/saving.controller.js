@@ -79,6 +79,19 @@ router.delete('/:id', async (req, res) => {
 
 })
 
+router.delete('/:id', async (req, res) => {
+  try{
+    const userId = req.params.id
+    const saving = await savingService.deleteSavingByUserId(userId)
+    res.status(200).send({ message: `Saving by ${userId} has been deleted` })
+  }catch(error){
+    res.status(500).send({
+      message: "Failed to delete saving",
+      error: error.message
+    })
+  }
+})
+
 router.patch('/:id', async (req, res) => {
   try {
     const savingId = req.params.id

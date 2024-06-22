@@ -41,6 +41,10 @@ const deleteAdvanceBudget = async (advbudgetId) => {
   return rows[0];
 };
 
+const deleteAdvanceBudgetByUserId = async (userId) => {
+  await pool.query(`DELETE FROM adv_budget WHERE user_id = $1`, [userId])
+}
+
 
 
 module.exports = {
@@ -50,5 +54,6 @@ module.exports = {
   insertAdvanceBudget,
   editAdvanceBudget,
   deleteAdvanceBudget,
+  deleteAdvanceBudgetByUserId
   
 };

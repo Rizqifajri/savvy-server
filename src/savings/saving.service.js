@@ -16,7 +16,6 @@ const getSavingById = async (savingId) => {
   return saving
 }
 
-
 const createSaving = async (newSaving) => {
     const userId = newSaving.user_id;
     const user = await userRepository.findUserById(userId);
@@ -43,6 +42,10 @@ const deleteSaving = async (savingId) => {
   return saving
 }
 
+const deleteSavingByUserId = async (userId) => {
+  await savingRepository.deleteSavingByUserId(userId)
+}
+
 const editSavingById = async (dataSaving) => {
   const {savingId, user_id} = dataSaving
   const user = await userService.getUserById(user_id)
@@ -60,6 +63,7 @@ module.exports = {
   getSavingById,
   createSaving,
   editSavingById,
-  deleteSaving
+  deleteSaving,
+  deleteSavingByUserId
 
 }

@@ -56,11 +56,16 @@ const deleteTransaction = async (transactionId) => {
   await pool.query(`DELETE FROM Transactions WHERE id = $1`, [transactionId])
 }
 
+const deleteTransactionByUserId = async (userId) => {
+  await pool.query(`DELETE FROM Transactions WHERE user_id = $1`, [userId])
+}
+
 module.exports = {
   findAllTransaction,
   findTransactionById,
   findTransactionsByUserId,
   insertTransaction,
   editTransaction,
-  deleteTransaction
+  deleteTransaction,
+  deleteTransactionByUserId
 }

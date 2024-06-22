@@ -41,6 +41,11 @@ const deleteTransaction = async (transactionId) => {
   return transaction
 }
 
+const deleteTransactionByUserId = async (userId) => {
+  const transaction = await transactionRepository.deleteTransactionByUserId(userId)
+  return transaction
+}
+
 const editTransactionById = async (dataTransaction) => {
   const { transactionId, user_id } = dataTransaction;
   const user = await userService.getUserById(user_id);
@@ -53,4 +58,4 @@ const editTransactionById = async (dataTransaction) => {
 
 
 
-module.exports = { getAllTransaction, getTransactionById, createTransaction, deleteTransaction, editTransactionById };
+module.exports = { getAllTransaction, getTransactionById, createTransaction, deleteTransaction, editTransactionById, deleteTransactionByUserId };

@@ -28,7 +28,6 @@ router.post('/', async (req, res) => {
       category_name,
       adv_budget_id
     });
-
     res.status(201).send({
       message: "Succes add transaction",
       data: newTransaction
@@ -43,6 +42,19 @@ router.delete('/:id', async (req, res) => {
     const transactionBudgetId = req.params.id
     const transacitonBudget = await transactionBudgetService.deleteTransactionBudgetById(transactionBudgetId)
     res.status(200).send({ message: "Transaction has been deleted!" })
+  } catch (error) {
+    res.status(400).send({
+      message: "Failed to delete transaction",
+      error: error.message
+    });
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const userId = req.params.id
+    const transacitonBudget = await transactionBudgetService.deleteTransactionBudgetById(userId)
+    res.status(200).send({ message: `Transaction ${userId} has been deleted!` })
   } catch (error) {
     res.status(400).send({
       message: "Failed to delete transaction",

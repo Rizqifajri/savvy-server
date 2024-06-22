@@ -87,6 +87,36 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const advanceBudgetId = req.params.id
+    const advanceBudget = await advanceBudgetService.deleteAdvanceBudget(advanceBudgetId)
+    res.status(200).send({
+      message: "Has been deleted!"
+    })
+  } catch (error) {
+    res.status(400).send({
+      message: "Failed to delete",
+      error: error.message
+    });
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const userId = req.params.id
+    const advanceBudget = await advanceBudgetService.deleteAdvanceBudgetByUserId(userId)
+    res.status(200).send({
+      message: `Advance budget by ${userId} Has been deleted!`
+    })
+  } catch (error) {
+    res.status(400).send({
+      message: "Failed to delete",
+      error: error.message
+    });
+  }
+})
+
 router.patch('/:id', async (req, res) => {
   try {
     const advanceBudgetId = req.params.id;

@@ -30,11 +30,16 @@ const deleteAdvanceBudget = async (advBudgetId) => {
   return deletedAdvanceBudget;
 };
 
+const deleteAdvanceBudgetByUserId = async (userId) => {
+  await advBudgetRepository.deleteAdvanceBudgetByUserId(userId)
+}
+
 module.exports = {
   getAllAdvanceBudget,
   getAdvanceBudgetById,
   getAdvanceBudgetByUserId,
   createAdvanceBudget,
   editAdvanceBudgetById,
-  deleteAdvanceBudget
+  deleteAdvanceBudget,
+  deleteAdvanceBudgetByUserId
 };

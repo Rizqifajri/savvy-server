@@ -1,6 +1,10 @@
 //logic bisnis atau aturan pakai aplikasi nya.
 //menentukan operasi CRUD entitas user
 
+const transactionService = require('../transactions/transaction.service')
+const savingService = require('../savings/saving.service')
+const advanceBudgetService = require('../advancebudgets/advancebudget.service')
+const transactionBudgetService = require('../transactionbduget/transactionbudget.service')
 const userRepository = require('./user.repository')
 const { generateToken } = require("../jwt")
 
@@ -42,6 +46,9 @@ const createUser = async (name, username, email, password) => {
 }
 
 const deleteUser = async (userId) => {
+  await transactionService.deleteTransactionByUserId(userId)
+  await savingService.deleteSavingByUserId(userId)
+  await advanceBudgetService.deleteAdvanceBudgetByUserId(userId)
   const user = await userRepository.deleteUser(userId)
   return user;
 }

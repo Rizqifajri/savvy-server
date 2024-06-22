@@ -79,6 +79,19 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
+router.delete('/:id', async (req, res)=> {
+  try{
+    const userId = req.params.id
+    const transaction = await transactionService.deleteTransactionByUserId(userId)
+    res.status(200).send({message: `Transaction by ${userId} was deleted!`})
+  }catch(error){
+    res.status(400).send({
+      message: "Failed to delete transaction",
+      error: error.message
+    })
+  }
+})
+
 router.patch('/:id', async (req, res) => {
   try {
     const transactionId = req.params.id;

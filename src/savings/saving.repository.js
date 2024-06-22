@@ -33,6 +33,10 @@ const deleteSaving = async (savingId) => {
 
 }
 
+const deleteSavingByUserId = async (userId) => {
+  await pool.query (`DELETE FROM savings WHERE user_id = $1`, [userId])
+}
+
 const editSaving = async (dataSaving) => {
   const {savingId, date, saving_method, total_saving, user_id, category_name, start_date, end_date, saving_frequency, nominal, collected} = dataSaving;
   const query = `
@@ -53,5 +57,6 @@ module.exports = {
   findSavingsByUserId,
   insertSaving,
   editSaving,
-  deleteSaving
+  deleteSaving,
+  deleteSavingByUserId
 }

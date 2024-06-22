@@ -29,9 +29,14 @@ const editTransaction = async (transactionBudgetId, transaction) => {
   return rows[0];
 };
 
+const deleteTransacitonBudgetByUserId = async (userId) => {
+  await pool.query(`DELETE FROM transaction_budget WHERE user_id = $1`, [userId])
+}
+
 module.exports = {
   findTransactionsByBudgetId,
   insertTransaction,
   editTransaction,
-  deleteTransacitonBudget
+  deleteTransacitonBudget,
+  deleteTransacitonBudgetByUserId
 }
